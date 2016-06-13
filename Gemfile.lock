@@ -69,9 +69,6 @@ GEM
     acts_as_list (0.7.4)
       activerecord (>= 3.0)
     addressable (2.4.0)
-    airbrake (5.4.0)
-      airbrake-ruby (~> 1.4)
-    airbrake-ruby (1.4.3)
     ansi (1.5.0)
     arbre (1.0.3)
       activesupport (>= 3.0.0)
@@ -271,7 +268,6 @@ DEPENDENCIES
   activeadmin
   activeadmin-cancan!
   acts_as_list
-  airbrake
   audited-activerecord
   bootstrap-kaminari-views
   bourbon
@@ -288,7 +284,6 @@ DEPENDENCIES
   newrelic_rpm
   pg
   rack-p3p
-  rails (= 3.2.11)
   rails_12factor
   sass-rails (~> 3.2.4)
   setler

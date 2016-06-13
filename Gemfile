@@ -35,10 +35,11 @@ group :test do
 end
 
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', require: false
   gem 'heroku', require: false
   gem 'taps', require: false
 
+gem 'rails_12factor', require: false
   # Need to keep this commented out or it will break heroku
   # gem 'ruby-debug19', :require => 'ruby-debug'
 end

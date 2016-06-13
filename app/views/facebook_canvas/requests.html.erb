@@ -1,0 +1,7 @@
+<% page_id :apprequests -%>
+
+<%= render partial: 'fb/games/league_nav', locals: { list_type: 'upcoming' } %>
+
+<p class="message"><%= @apprequest.user.full_name %> picked <%= @request_user_entry.winner.name %> to beat <%= @request_user_entry.loser.name %>. Who do you think will win? Make your pick.</p>
+
+<%= render 'entries' %>

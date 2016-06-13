@@ -1,0 +1,11 @@
+<% page_id :apprequests -%>
+
+<div class="active">
+  <ul>
+    <% @apprequests.each do |req| -%>
+      <li class="<%= req.request_type %>" data-id="<%= req.target_id %>">
+        <%= render partial: "fb/#{req.request_type.pluralize}/request", object: req %>
+      </li>
+    <% end -%>
+  </ul>
+</div>

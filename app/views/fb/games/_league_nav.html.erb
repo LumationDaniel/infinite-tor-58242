@@ -1,0 +1,9 @@
+<ul class="pills">
+  <% league_scope = (list_type == 'completed') ? :with_recently_past_games : :with_upcoming_games
+     @leagues = League.send(league_scope)
+     @leagues.each do |league| -%>
+    <%= content_tag(:li, class: (@league && league.id == @league.id) ? 'active' : nil) do -%>
+      <%= link_to league.label, fb_app_url("/games/#{list_type}/#{league.id}"), target: '_top' %>
+    <% end -%>
+  <% end -%>
+</ul>

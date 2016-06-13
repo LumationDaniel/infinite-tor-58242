@@ -1,0 +1,26 @@
+<li class="game row<%= ' active' unless game.completed? %>" data-id="<%= game.id %>" data-starts-at="<%= game.starts_at.to_i * 1000 %>"<%= " data-challenges=\"#{game.challenges_count.to_i}\"" if game.has_attribute?(:challenges_count) %>>
+
+  <div class="meta span8">
+    <div class="row">
+      <div class="league span3"><%= game.league.label %></div>
+      <div class="start-date span2">
+        <%= game.starts_at.strftime('%a, %b %-d') %>,
+        <%= game.starts_at.strftime('%l:%M %p ET') %>
+        <% if game.tv_channel.present? %>
+          / <%= game.tv_channel  %>
+        <% end %>
+      </div>
+      <div class="span3 right-col ">
+        <div class="cash-prize"><%= number_to_currency(game.cash_prize, precision:0) %> <span title="Pickoff Cash">PC</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info span8 <%= game.league.sport.downcase.gsub(/\s+/, '-') %>">
+    <%= content_tag(:h3, game.name) if game.name? -%>
+    <div class="teams">
+      <%= render :partial => 'fb/games/team', :locals => { game: game, team: :away } %>
+      <%= render :partial => 'fb/games/team', :locals => { game: game, team: :home } %>
+    </div>
+  </div>
+</li>

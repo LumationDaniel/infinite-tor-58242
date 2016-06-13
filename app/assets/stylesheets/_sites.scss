@@ -1,0 +1,31 @@
+.site {
+  &.uf .page-header h1 {
+    background: image-url('sites/uf_masthead.png') no-repeat;
+  }
+
+  .page-header {
+    .greeting {
+      left: 374px;
+      em { line-height: 2em; }
+    }
+    img {
+      left: 320px;
+    }
+    .stats {
+      // 57
+      dt.pickoff-cash {
+        left: 488px;
+      }
+      #pickoff-cash {
+        left: 486px;
+      }
+
+      dt.accuracy, dt.correct {
+        left: 620px;
+      }
+      dd.accuracy, dd.correct {
+        right: 8px;
+      }
+    }
+  }
+}

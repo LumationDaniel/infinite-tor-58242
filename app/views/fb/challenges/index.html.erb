@@ -1,0 +1,42 @@
+<% page_id :challenges %>
+
+<div class="active">
+  <h3>My Challenges</h3>
+  <ul>
+    <% @outgoing_challenges.each do |challenge| -%>
+    <li>
+      <div class="alert-message block-message success">
+        <p>
+          <%= fb_profile_pic(challenge.opponent_facebook_id) %>
+          <% if challenge.open? -%>
+            <b>(Pending)</b>
+          <% end -%>
+          Challenged <%= challenge.opponent_name %> <%= number_to_currency(challenge.wager_amount, precision: 0) %> in Pickoff Cash that <%= challenge.challenger_entry.winner.name %> will beat <%= challenge.challenger_entry.loser.name %> on <%= challenge.game.starts_at.strftime('%B %e') %>.
+        </p>
+      </div>
+    </li>
+    <% end -%>
+  </ul>
+
+  <% if @outgoing_challenges.empty? -%>
+    <p>No challenges</p>
+  <% end -%>
+
+  <h3>Accepted Challenges</h3>
+  <ul>
+    <% @incoming_challenges.each do |challenge| -%>
+    <li>
+      <div class="alert-message block-message success">
+        <p>
+          <%= fb_profile_pic(challenge.challenger) %>
+          Challenged by <%= challenge.challenger.full_name %> <%= number_to_currency(challenge.wager_amount, precision: 0) %> in Pickoff Cash that <%= challenge.challenger_entry.winner.name %> will beat <%= challenge.challenger_entry.loser.name %> on <%= challenge.game.starts_at.strftime('%B %e') %>.
+        </p>
+      </div>
+    </li>
+    <% end -%>
+  </ul>
+
+  <% if @incoming_challenges.empty? -%>
+    <p>No challenges</p>
+  <% end -%>
+</div>

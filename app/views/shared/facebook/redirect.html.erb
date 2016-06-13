@@ -1,0 +1,11 @@
+<html>
+<head>
+  <title>Pickoff - Sports Pick 'em Game with Friends</title>
+</head>
+<body>
+<p>Redirecting, please wait...</p>
+<%= javascript_tag do %>
+  top.location.href = '<%= @redirect_url.html_safe %>';
+<% end %>
+</body>
+</html>

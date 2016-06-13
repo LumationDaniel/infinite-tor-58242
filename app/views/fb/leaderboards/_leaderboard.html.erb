@@ -1,0 +1,61 @@
+<% page_id :leaderboard %>
+
+  <div class="active">
+    <div class="row">
+      <div class="span12 leaderboard-tabs">
+        <ul class="tabs">
+          <%= bootstrap_tab_item(fb_link_to('Pickoff', '/leaderboards'), action_name == 'index') %>
+          <% leaderboard_game_groups.each do |game_group| -%>
+            <%= bootstrap_tab_item(fb_link_to(game_group.label, "/leaderboards/#{game_group.to_param}"),
+                                   action_name == 'show' && @game_group == game_group) %>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span12 filtering-controls">
+        <%= form_tag nil, method: 'GET', id: 'filter-form' do %>
+        <span class="people-filter btn-group" data-toggle="buttons-radio">
+          <%= button_tag 'All Players', class: 'btn primary', 'data-value' => 'all', disabled: @people_filter == 'all' %>
+          <%= button_tag 'Friends', class: 'btn primary', 'data-value' => 'friends', disabled: @people_filter == 'friends' %>
+          <%= hidden_field_tag 'people', @people_filter %>
+          <%= hidden_field_tag 'sort', @sort %>
+          <%= hidden_field_tag 'sort_direction', @sort_direction %>
+        </span>
+        <%= select_tag :time, options_for_select([['All Time', 'all'], ['30 Days', '30days']], @time_filter) %>
+        <% end %>
+      </div>
+    </div>
+    <table>
+      <tbody>
+        <tr>
+          <th>Rank</th>
+          <th>Player</th>
+          <th>Name</th>
+          <th><%= sort_link 'Earnings', 'earnings' %></th>
+          <th><%= sort_link 'Accuracy', 'accuracy', 'Correct picks divided by total number of picks for games ended. It is not factored into ranking. Minimum 20 games picked required.' %></th>
+          <th><%= sort_link 'Picks Made', 'picks', 'Total number of games picked. It is not factored into ranking.' %></th>
+          <th><%= sort_link 'Friends', 'friends', 'Total number of Facebook friends playing Pickoff. It is not factored into ranking.' %></th>
+        </tr>
+        <% @users.each_with_index do |user, index| -%>
+        <tr>
+          <td><%= ((page - 1) * per_page) + index + 1 %></td>
+          <td class="profile-picture"><%= fb_profile_pic(user) %></td>
+          <td><%= user.anonymous_name %></td>
+          <td><%= number_to_currency(user.total_earnings, precision: 0) %></td>
+          <td class="accuracy">
+            <% if user.picks_total.to_i >= 20 -%>
+              <%= number_to_percentage user.accuracy.to_f*100, precision: 0 %>
+            <% else -%>
+              <span class="insufficient-picks" data-placement="left" data-content="Results for 20 game picks are needed before accuracy is calculated">n/a</span>
+            <% end -%>
+          </td>
+          <td><%= user.picks_total %></td>
+          <td><%= user.total_friends %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+    </table>
+    <%= paginate @users, param_name: :p, :theme => 'twitter-bootstrap' %>
+  </div>

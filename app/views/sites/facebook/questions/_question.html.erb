@@ -1,0 +1,22 @@
+<li class="question row<%= ' active' unless question.completed? %>" data-id="<%= question.id %>" data-locked-on="<%= question.locked_on.to_i * 1000 %>">
+
+  <div class="meta span8">
+    <div class="row">
+      <div class="span6 left-col">
+        <span class="locked-date">Question locks: <%= question.locked_on.strftime('%a %b %-d, %l:%M %p ET') %></span>
+      </div>
+      <div class="span2 right-col">
+        <div class="points"><%= number_with_delimiter question.cash_prize %> points</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info span8">
+    <%= content_tag(:h3, question.text) -%>
+    <div class="answers">
+      <% question.answers.each do |answer| %>
+        <%= render :partial => 'sites/facebook/questions/answer', object: answer %>
+      <% end %>
+    </div>
+  </div>
+</li>

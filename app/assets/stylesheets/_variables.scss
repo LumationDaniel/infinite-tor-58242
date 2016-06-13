@@ -1,0 +1,8 @@
+$sans-serif: 'Helvetica Neue', Helvetica, Arial sans-serif;
+
+@mixin truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

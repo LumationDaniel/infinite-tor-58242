@@ -1,0 +1,127 @@
+#challenge-modal {
+  left: 40%;
+  width: 684px; height: 445px;
+  z-index: 10000; // make sure challenge modal display under request dialog
+
+  .modal-body {
+    height: 319px; // $modal-height - $header-height - $footer-height - ($body-vpad * 2)
+  }
+}
+
+#jfmfs-friend-selector {
+  width:99%;
+  height:300px;
+  overflow-y:hidden;
+}
+
+#jfmfs-inner-header {
+  height: 32px;
+}
+
+#jfmfs-friend-container {
+  height: 263px;
+}
+
+.apprequest form .counter {
+  &.warning { color:#600; }
+  &.exceeded { color:#e00; }
+}
+
+#challenges .tab-content ul {
+  list-style: none;
+  margin: 0;
+}
+
+/** CHALLENGE PAGE STYLES **/
+#challenge {
+  .challenge-content {
+    margin-top: 10px;
+
+    form.button_to {
+      display: inline;
+      div { display: inline; }
+    }
+  }
+}
+
+/** CHALLENGE CONFIRMATION **/
+#challenge-confirmation {
+  background: image-url('challenges/Challenge_sent.png') no-repeat 0 0;
+  padding-left: 6px;
+  position: absolute;
+  width: 518px; height: 285px;
+
+  top: 300px;
+
+  .close-button {
+    @include hide-text;
+    background: image-url('buttons/buttons_sprite.png') no-repeat -115px -119px;
+    display: block;
+    position: absolute;
+    right: 14px; top: 20px;
+    width: 28px; height: 28px;
+
+    &:hover {
+      background-position: -115px -147px;
+    }
+  }
+
+  .container {
+    p {
+      color: white;
+      font-size: 18px;
+      line-height: 22px;
+      margin-top: 32px;
+      padding: 0 32px;
+      text-align: center;
+    }
+    .game .meta {
+      background: none;
+      margin-top: -3px;
+    }
+    .info {
+      color: white;
+      margin-top: 10px;
+
+      img { margin-left: 14px; }
+      div {
+        float: left;
+
+        &.details {
+          margin-left: 10px;
+          width: 166px;
+
+          span {
+            display: block;
+            margin-bottom: 4px;
+          }
+
+          .team {
+            @include truncate;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 21px;
+          }
+
+          .status {
+            font-size: 13px;
+          }
+
+          .wager {
+            font-size: 13px;
+            font-weight: bold;
+          }
+        }
+      }
+    } /* .info */
+
+    .buttons {
+      position: relative;
+      .challenge-button {
+        left: 342px;
+        position: absolute;
+        top: 18px;
+      }
+    } /* buttons */
+  }
+}

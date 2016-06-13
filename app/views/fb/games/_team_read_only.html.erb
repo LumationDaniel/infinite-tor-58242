@@ -1,0 +1,14 @@
+<% t = game.send("#{team}_team") %>
+<%= link_to '#', class: "team #{team}",
+                 'data-team-id' => t.id,
+                 'data-name' => t.name do %>
+  <div class="name">
+    <%= '@' if team == 'away' %>
+    <span class="rank"><%= game.send("#{team}_team_rank") %></span>
+    <%= t.name %>
+    <span class="score">
+      <%= "- #{game.send("#{team}_score")}" if game.completed? %>
+    </span>
+  </div>
+<% end %>
+

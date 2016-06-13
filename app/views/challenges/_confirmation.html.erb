@@ -1,0 +1,46 @@
+<div id="challenge-confirmation" style="display:none">
+  <a href="#" class="close-button" title="Close">Close</a>
+  <div class="container canvas">
+    <div class="row">
+      <div class="span8">
+        <p>Your Challenge to <span class="opponent-name">David</span> has been successfully sent. Does <span class="opponent-name">David</span> have the guts to accept?</p>
+      </div>
+    </div>
+    <div class="game row">
+      <div class="meta span8">
+        <!--div class="row">
+          <div class="league span3">MLB Baseball</div>
+          <div class="start-date span3">Monday, August 1</div>
+          <div class="span2 right-col">
+            <div class="start-time">7:00 PM ET</div>
+            <div class="tv-channel">ESPN</div>
+          </div>
+        </div-->
+      </div>
+    </div>
+    <div class="info row">
+      <div class="challenger span4">
+        <div class="">
+          <%= fb_profile_pic(current_user) %>
+        </div>
+        <div class="details">
+          <span class="team">Miami Marlins</span>
+          <span class="status">Challenge Sent</span>
+          <span class="wager">$100</span>
+        </div>
+      </div>
+      <div class="opponent">
+        <div class="">
+          <%= fb_profile_pic(current_user) %>
+        </div>
+        <div class="details">
+          <span class="team">Detroit Tiger</span>
+          <span class="status">Waiting</span>
+        </div>
+      </div>
+    </div>
+    <div class="buttons row">
+      <a href="#" class="challenge-button button green medium">Challenge!</a>
+    </div>
+  </div>
+</div>

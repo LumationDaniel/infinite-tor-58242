@@ -1,0 +1,8 @@
+<h2>Request IDs</h2>
+<ul>
+<% (session[:request_ids] || []).each do |request_id| -%>
+<li><%= request_id %></li>
+<% end -%>
+
+<li>Announcement Index: <%= session[:ann] %></li>
+</ul>

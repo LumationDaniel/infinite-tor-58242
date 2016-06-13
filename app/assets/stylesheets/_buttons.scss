@@ -1,0 +1,17 @@
+a.button.green.medium {
+  background: image-url('buttons/buttons_sprite.png') no-repeat -201px -98px;
+  color: white;
+  display: block;
+  font-family: $sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 47px;
+  text-align: center;
+  text-shadow: #000 1px 1px 0;
+  width: 161px; height: 50px;
+
+  &:hover {
+    background-position: -201px -151px;
+    text-decoration: none;
+  }
+}

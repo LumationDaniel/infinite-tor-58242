@@ -1,0 +1,13 @@
+<%= answer_item(answer) do %>
+  <div class="answer-text">
+    <%= answer.text %>
+  </div>
+  <div class="win-loss">
+    <% if answer.question.completed? && (answer.id == answer.question.answer_id.to_i) %>
+      <%= answer.right_answer? ? "+#{answer.question.cash_prize}" : answer.question.cash_penalty_for_loss %>
+    <% end %>
+  </div>
+  <div class="radio">
+    <div class="checkbox"></div>
+  </div>
+<% end %>

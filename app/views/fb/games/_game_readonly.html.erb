@@ -1,0 +1,23 @@
+<li class="game row">
+  <div class="meta span8">
+    <div class="row">
+      <div class="league span3"><%= game.league.label %></div>
+      <div class="start-date span2"><%= game.starts_at.strftime('%A, %b %-d') %></div>
+      <div class="span3 right-col">
+        <div class="start-time"><%= game.starts_at.strftime('%l:%M %p ET') %></div>
+        <% if game.tv_channel.present? -%>
+          <div class="tv-channel" title="<%= game.tv_channel %>"><%= game.tv_channel %></div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+
+  <div class="info span8 <%= game.league.sport.downcase %>">
+    <%= content_tag(:h3, game.name) if game.name? -%>
+    <div class="teams">
+      <%= render :partial => 'fb/games/team_read_only', :locals => { game: game, team: :away } %>
+      <%= render :partial => 'fb/games/team_read_only', :locals => { game: game, team: :home } %>
+    </div>
+  </div>
+</li>
+

@@ -1,0 +1,28 @@
+#new_bonus_prize {
+  max-width: 700px;
+
+  fieldset {
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+
+    ol > li {
+      padding-left: 0;
+
+      label {
+        width: 150px;
+      }
+
+      input[type=number], input[type=text] { width: 75%; }
+    }
+
+    &.inputs {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    &.actions {
+      input[type=submit] { margin-left: 150px; }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div id="mini-leaderboard" class="span4">
+  <h2>Friends</h2>
+
+  <div class="player-carousel-container<%= ' empty' if local_leaderboard.length == 1 %>">
+    <% if local_leaderboard.length > 1 #only me %>
+    <a href="#" class="up-button <%= 'disabled' if local_leaderboard.count <= 5 %>"><span>Up</span></a>
+    <div class="player-carousel-content">
+      <ul>
+      <% local_leaderboard.each_with_index do |user, index| -%>
+        <li class="<%= 'me' if me?(user) %>">
+          <div class="rank"><%= index + 1 %></div>
+          <%= fb_profile_pic(user) %>
+          <div class="name"><%= user.full_name %></div>
+          <div class="cash"><%= number_to_currency(user.total_earnings, precision: 0) %></div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+    <a href="#" class="down-button <%= 'disabled' if local_leaderboard.count <= 5 %>"><span>Down</span></a>
+    <% end %>
+  </div>
+  <a href="#" class="invite-friends"><div class="no-pic"></div><span><em>Invite Friends</em> to play Pickoff!</span></a>
+  <%= fb_link_to('View full leaderboard', '/leaderboards', :class => 'leaderboard-link') %>
+</div>

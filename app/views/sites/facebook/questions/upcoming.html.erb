@@ -1,0 +1,10 @@
+<% page_id 'upcoming-questions' %>
+<div class="active">
+  <header class="sub-header">
+    <h2 class="question">What do you think?</h2>
+  </header>
+
+  <ul class="questions">
+    <%= render partial: 'sites/facebook/questions/question', collection: @questions %>
+  </ul>
+</div>

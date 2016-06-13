@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Pickoff - Sports Pick 'em Game with Friends</title>
+
+  <%= stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body<%= " id=\"#{@page_id}\"".html_safe if @page_id %>>
+
+  <%= yield %>
+
+  <%= fb_init %>
+  <%= javascript_include_tag "application" %>
+  <%= render 'shared/ga' %>
+</body>
+</html>

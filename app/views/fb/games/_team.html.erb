@@ -1,0 +1,22 @@
+<% t = game.send("#{team}_team") %>
+<%= link_to '#', class: team_entry_classes(game, team),
+                 title: (game.completed? || disable_pick?(game) ? '' : "Pick #{t.name}"),
+                 'data-team-id' => t.id,
+                 'data-name' => t.name do %>
+  <div class="name">
+    <%= '@' if team == :home %>
+    <span class="rank"><%= game.send("#{team}_team_rank") %></span>
+    <%= t.name %>
+    <span class="score">
+      <%= "- #{game.send("#{team}_score")}" if game.completed? %>
+    </span>
+  </div>
+  <div class="win-loss">
+    <% if game.completed? && t.id == game.winner_id.to_i && !game.tie? %>
+      <%= win?(game) ? "+#{game.cash_prize}" : game.cash_penalty_for_loss %>
+    <% end %>
+  </div>
+  <div class="radio">
+    <div class="checkbox"></div>
+  </div>
+<% end %>

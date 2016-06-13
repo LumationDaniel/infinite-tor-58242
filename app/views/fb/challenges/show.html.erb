@@ -1,0 +1,29 @@
+<div id="challenge" class="active">
+  <ul class="games">
+    <%= render partial: 'fb/games/game_readonly', locals: {game: @challenge.game} %>
+  </ul>
+
+  <div class="challenge-content">
+    <p><%= fb_profile_pic(@challenge.challenger) %> vs. <%= fb_profile_pic(@challenge.opponent_facebook_id) %></p>
+
+    <p><%= challenger_name(@challenge) %> challenged <%= challenge_opponent_name(@challenge) %> that <%= @challenge.challengers_pick.name %> will win for the amount of <%= number_to_currency(@challenge.wager_amount, precision: 0) %>.</p>
+
+    <% if @challenge.open? && me?(@challenge.opponent) %>
+      <p>
+        <%= button_to "Yeah, I'll take #{@challenge.opponents_pick.name}", accept_fb_challenge_path(@challenge), method: :post, class: 'btn success' %>
+        <%= button_to 'Decline', decline_fb_challenge_path(@challenge), method: :post, class: 'btn danger' %>
+      </p>
+  
+    <% elsif @challenge.expired? %>
+      <p>Challenge expired before <%= challenge_opponent_name(@challenge) %> accepted the challenge.</p>
+
+    <% elsif @challenge.accepted? || @challenge.completed? %>
+      <p><%= challenge_opponent_name(@challenge) %> accepted the challenge.</p>
+
+    <% else %>
+      <p><%= challenge_opponent_name(@challenge) %> declined the challenge.</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="fb-comments" data-href="<%= fb_challenge_url(@challenge) %>" data-num-posts="25" data-width="470"></div>

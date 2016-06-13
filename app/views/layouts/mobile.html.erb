@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Pickoff - Sports Pick 'em Game with Friends</title>
+  <meta property="fb:app_id" content="<%= facebook_app_id %>"/>
+
+  <% if Rails.env.production? %>
+  <script type="text/javascript">
+    var _kmq = _kmq || [];
+    var _kmk = _kmk || '8c67e96c5444df9c712d9117c7a47361660a3aa3';
+    function _kms(u){
+      setTimeout(function(){
+        var d = document, f = d.getElementsByTagName('script')[0],
+        s = d.createElement('script');
+        s.type = 'text/javascript'; s.async = true; s.src = u;
+        f.parentNode.insertBefore(s, f);
+      }, 1);
+    }
+    _kms('//i.kissmetrics.com/i.js');
+    _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+  </script>
+  <% end %>
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <%= stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body<%= " id=\"#{@page_id}\"".html_safe if @page_id %>>
+  <!-- container -->
+  <div class="container canvas">
+    <%= render 'shared/header' %>
+
+    <div class="row">
+      <div class="tab-content <%= controller_name == 'leaderboards' ? 'span12' : 'span8' %>">
+        <%= yield %>
+      </div>
+      <div id="sidebar" class="span4">
+       <%= render('shared/mini_leaderboard') unless controller_name == 'leaderboards' %>
+      </div>
+   </div>
+
+    <div id="footer">
+      <ul>
+        <li><%= link_to 'Terms', 'http://www.pickoffsports.com/terms/', target: '_blank' %></li>
+        <li><%= link_to 'Privacy Policy', 'http://www.pickoffsports.com/privacy/', target: '_blank' %></li>
+      </ul>
+    </div>
+  </div>
+  <!-- container -->
+
+  <%= render 'shared/challenge' %>
+  <div id="notice" style="display:none"></div>
+  <%= image_tag('buttons/check.png', id: 'check-animation', style: 'display:none') %>
+
+  <% if Rails.env.development? -%>
+  <p>Session:
+    <ul>
+      <% session.each_pair do |k,v| -%>
+      <li><%= k %>: <%= v %></li>
+      <% end -%>
+    </ul>
+  </p>
+    <% if signed_request -%>
+    <p>Signed Request:
+      <ul>
+        <% signed_request.each_pair do |k,v| -%>
+        <li><%= k %>: <%= v %></li>
+        <% end -%>
+      </ul>
+    </p>
+    <% end -%>
+  <% end -%>
+
+  <%= fb_init %>
+
+  <%= javascript_include_tag "application" %>
+  <%= add_session_notices %>
+  <%= render 'shared/ga' %>
+</body>
+</html>
+

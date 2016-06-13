@@ -1,0 +1,11 @@
+<div class="active-picks active">
+  <header class="sub-header">
+    <h2 class="question">My Current Picks</h2>
+    <%= league_select(League.with_upcoming_games, @league) { |l| l == :all ? fb_app_url('/games/picks') : fb_app_url("/games/picks/#{l.id}") } %>
+  </header>
+
+  <ul class="games">
+    <%= render partial: 'fb/games/game', collection: @games %>
+  </ul>
+</div>
+

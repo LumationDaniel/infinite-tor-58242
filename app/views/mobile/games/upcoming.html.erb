@@ -1,0 +1,11 @@
+<% page_id 'upcoming-games' %>
+<div class="pick-winners active">
+  <header class="sub-header">
+    <h2 class="question">Who Will Win?</h2>
+    <%= league_select(League.with_upcoming_games, @league) { |l| l == :all ? fb_app_url : fb_app_url("/games/upcoming/#{l.id}") } %>
+  </header>
+
+  <ul class="games">
+    <%= render partial: 'fb/games/game', collection: @games %>
+  </ul>
+</div>

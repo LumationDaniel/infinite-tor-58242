@@ -1,0 +1,10 @@
+<%= bootstrap_alert(:info , flash[:notice]) if flash[:notice].present? %>
+<%= bootstrap_alert(:error, flash[:alert ]) if flash[:alert ].present? %>
+
+<h1>Glad you changed your mind!</h1>
+
+<p>
+  Let's go make some picks!
+  <%= button_to "Let's Play", fb_app_url, class: "btn btn-large bt-success" %>
+</p>
+

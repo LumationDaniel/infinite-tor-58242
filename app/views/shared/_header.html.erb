@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="span12">
+    <div class="fb-like" data-href="http://www.facebook.com/Pickoff" data-send="true" data-width="600" data-show-faces="false"></div>
+  </div>
+</div>
+
+<nav id="top-nav" class="row">
+  <ul class="tabs span12">
+    <%= bootstrap_tab_item(link_to('Feedback', 'http://www.facebook.com/Pickoff', :target => '_blank', :class => 'feedback'), false) %>
+    <%= bootstrap_tab_item(link_to('Invite Friends', '#', :class => 'invite-friends'), false) %>
+    <%= bootstrap_tab_item(link_to('How to Play', 'http://www.pickoffsports.com/faq/', :target => '_blank', :class => 'how-to-play'), false) %>
+  </ul>
+</nav>
+
+<header class="row page-header">
+  <h1 class="span12">Pickoff - Sports Pick 'em Game with Your Friends. BETA.</h1>
+  <% if current_user %>
+    <p class="greeting">Welcome Back <em><%= current_user.first_name %></em></p>
+    <%= fb_profile_pic(current_user) %>
+    <dl class="stats">
+      <dt class="pickoff-cash">Pickoff Cash Holdings</dt>
+      <dd id="pickoff-cash"><%= number_to_currency current_user.cash, precision: 0, unit: '' %></dd>
+
+      <dt class="accuracy">Accuracy</dt>
+      <dd class="accuracy"><%= number_to_percentage current_user.pickem_accuracy, precision: 0 %></dd>
+
+      <dt class="correct">Correct:</dt>
+      <dd class="correct"><%= number_with_delimiter(current_user.wins) %>/<%= number_with_delimiter(current_user.total_picks) %></dd>
+    </dl>
+  <% end %>
+</header>
+
+<nav id="sub-nav" class="row">
+  <ul class="tabs span12">
+    <%= bootstrap_tab_item(fb_link_to('Pick Winners'),
+                           controller_name == 'games' && action_name == 'upcoming') %>
+
+    <%= bootstrap_tab_item(fb_link_to('My Current Picks', '/games/picks'),
+                           controller_name == 'games' && action_name == 'picks') %>
+
+    <%= bootstrap_tab_item(fb_link_to('My Results', '/games/completed'),
+                           controller_name == 'games' && action_name == 'completed') %>
+
+    <% if current_user && current_user.active_challenges_count -%>
+      <%= bootstrap_tab_item(fb_link_to("My Challenges <span class=\"challenges-count counter\">#{current_user.active_challenges_count}</span>".html_safe, '/challenges'),
+                             controller_name == 'challenges') %>
+    <% end -%>
+
+    <%= bootstrap_tab_item(fb_link_to('Leaderboard', '/leaderboards'),
+                           controller_name == 'leaderboards' && action_name == 'index') %>
+  </ul>
+</nav>
+
+<div class="row">
+  <div class="span12 alerts">
+    <%= show_announcement -%>
+    <%= bootstrap_alert(:info , flash[:notice]) if flash[:notice].present? %>
+    <%= bootstrap_alert(:error, flash[:alert ]) if flash[:alert ].present? %>
+  </div>
+</div>
